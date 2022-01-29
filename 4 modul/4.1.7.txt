@@ -1,0 +1,13 @@
+/* Дано натуральное число n. Получить все его натуральные делители */
+
+#include <stdio.h>
+
+int main()
+{
+    int number, divider;
+    number = 144;
+    
+    for(divider = 1; divider != number; divider++)
+    	if (number % divider == 0)
+    		printf("\nDivider is %d\n", divider);
+}
