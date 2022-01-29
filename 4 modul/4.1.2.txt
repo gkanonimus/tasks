@@ -1,0 +1,19 @@
+/*  Подсчитать количество натуральных чисел n (102 <= n <= 987), в
+которых все три цифры различны */
+
+#include <stdio.h>
+
+int main()
+{
+    int counter, number;
+    number  = 102;
+    counter = 0;
+    
+    while(number != 988)
+    	{
+    	if ((number / 100 != number % 10) && (number / 100 != number / 10 % 10) && (number / 10 % 10 != number % 10))
+    		counter++;
+    	number++;
+    	}
+    printf("\n%d\n", counter);
+}
