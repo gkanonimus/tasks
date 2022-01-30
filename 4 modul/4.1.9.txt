@@ -5,20 +5,24 @@
 int main()
 {
     int n, count, number, divider, temp_count;
-    n = 10;
+    n = 20000;
     count = 0;
     
-    for(number = 2; n > count; number++)
+    for(number = 3; n > count; number += 2)
     {
-        for(divider = 1; divider != number; divider++)
-            if (number % divider == 0)
-    	        temp_count++;
-    	    if (temp_count == 1)
-    	    {
-    	        printf("\n%d\n", number);
-    	        count++;
-    	    }
+        for(divider = 2; divider != number; divider++)
+        {
+            if(number % divider == 0)
+            {
+                temp_count++;
+                break;
+            }
+        }
+    	if (!temp_count)
+        {
+    	    //printf("\n%d\n", number);
+    	    count++;
+    	}
     	temp_count = 0;
     }
-    
 }
