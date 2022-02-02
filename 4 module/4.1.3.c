@@ -1,5 +1,5 @@
-/* Подсчитать количество натуральных чисел n (11 <= n <= 999),
-являющихся палиндромами, и распечатать их */
+/* Count the number of natural numbers n (11 <= n <= 999),
+which are palindromes and print them */
 
 #include <stdio.h>
 
@@ -30,5 +30,5 @@ int main()
         }
         number++;
     }
-    printf("\nВсего %d палиндромов\n", counter);
+    printf("\nTotal %d palindromes\n", counter);
 }

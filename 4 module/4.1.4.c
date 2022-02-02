@@ -1,5 +1,4 @@
-/* Подсчитать количество цифр в десятичной записи целого неотрицательного
-числа n */
+/* Count the number of digits in the decimal notation of a non-negative integer n */
 
 #include <stdio.h>
 

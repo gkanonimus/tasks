@@ -1,4 +1,4 @@
-/* Дано натуральное число n. Получить наименьшее число вида 2^r, превосходящее n */
+/* Given a natural number n. Get the smallest number of the form 2^r greater than n */
 
 #include <stdio.h>
 #include <math.h>

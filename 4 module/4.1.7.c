@@ -1,4 +1,4 @@
-/* Дано натуральное число n. Получить все его натуральные делители */
+/* Given a natural number n. Get all its natural divisors */
 
 #include <stdio.h>
 

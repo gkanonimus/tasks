@@ -1,5 +1,4 @@
-/* Подсчитать количество натуральных чисел n (111 <= n <= 999), в записи
-которых есть две одинаковые цифры */
+/* Count the number of natural numbers n (111 <= n <= 999) that contain two identical digits */
 
 #include <stdio.h>
 

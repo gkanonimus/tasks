@@ -1,5 +1,5 @@
-/*  Подсчитать количество натуральных чисел n (102 <= n <= 987), в
-которых все три цифры различны */
+/* Count the number of natural numbers n (102 <= n <= 987), in
+where all three digits are different */
 
 #include <stdio.h>
 

@@ -1,8 +1,10 @@
-/*Используя условную операцию “?:”, написать выражение для вычисления:
-a) модуля целого числа x
-б) максимума двух целых чисел
-в) максимума трех целых чисел */
+/* Using the conditional operation “?:”, write an expression to evaluate:
+a) the modulus of an integer x
+b) the maximum of two integers
+c) the maximum of three integers */
+
 #include <stdio.h>
+
 int main()
 {
     int x, modul;

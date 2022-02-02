@@ -1,5 +1,6 @@
-/* Определить число, полученное выписыванием в обратном порядке цифр
-заданного целого трехзначного числа */
+/* Determine the number obtained by writing in reverse order of digits
+given three-digit integer */
+
 #include <stdio.h>
 #include <math.h>
 

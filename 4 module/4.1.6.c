@@ -1,4 +1,4 @@
-/*  Определить, является ли натуральное число n степенью числа 3 */
+/* Determine if a natural number n is a power of 3 */
 
 #include <stdio.h>
 

@@ -1,4 +1,4 @@
-/* Определить, верно ли, что куб суммы цифр натурального числа n равен n^2 */
+/* Determine if the cube of the sum of the digits of a natural number n is equal to n^2 */
 
 #include <stdio.h>
 #include <math.h>

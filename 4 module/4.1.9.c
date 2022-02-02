@@ -1,4 +1,4 @@
-/* Распечатать первые n простых чисел */
+/* Print first n primes */
 
 #include <stdio.h>
 

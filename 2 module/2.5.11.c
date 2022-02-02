@@ -1,4 +1,4 @@
-/* «Распаковать» 32-битное беззнаковое целое число в четыре символа */
+/* "Unpack" a 32-bit unsigned integer into four characters */
 
 #include <stdio.h>
 

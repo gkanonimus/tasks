@@ -1,5 +1,6 @@
-Пусть int a = 5, int b = 7. Чему будет равно значение выражения и
-побочные эффекты?
+/* Let int a = 5, int b = 7. What will be the value of the expression and
+side effects? */
+
 а) (a += 5) * (b -= 3)
 б) --b / (a++ - 3)
 в) (a -= 2) || 47 / (b - 7)

@@ -1,4 +1,4 @@
-/* Распечатать первые n чисел Фибоначчи */
+/* Print the first n Fibonacci numbers */
 
 #include <stdio.h>
 
