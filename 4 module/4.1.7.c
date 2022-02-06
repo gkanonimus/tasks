@@ -8,6 +8,10 @@ int main()
     number = 144;
     
     for(divider = 1; divider != number; divider++)
-    	if (number % divider == 0)
-    		printf("\nDivider is %d\n", divider);
+    {
+        if (number % divider == 0)
+    	{
+            printf("\nDivider is %d\n", divider);
+        }
+    }
 }

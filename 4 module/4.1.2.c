@@ -12,7 +12,9 @@ int main()
     while(number != 988)
     	{
     	if ((number / 100 != number % 10) && (number / 100 != number / 10 % 10) && (number / 10 % 10 != number % 10))
-    		counter++;
+        {
+            counter++;
+        }
     	number++;
     	}
     printf("\n%d\n", counter);

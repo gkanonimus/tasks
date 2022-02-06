@@ -8,7 +8,7 @@ int main()
     number_1 = 0;
     number_2 = 1;
     number_3 = 1;
-    n = 15;
+    n        = 15;
     
     printf("\n0\n1");
     while(n>0)

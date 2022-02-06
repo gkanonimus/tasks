@@ -8,8 +8,15 @@ int main()
     number = 27;
     
     while (number % 3 == 0)
+    {
         number /= 3;
+    }
     if (number == 1)
+    {
         printf("\nTrue\n");
-    else printf ("\nFalse\n");
+    }
+    else 
+    {
+        printf ("\nFalse\n");
+    }
 }
