@@ -5,44 +5,46 @@
 Assuming that there are no errors in the formula entry, describe the function that calculates the value of this formula */
 
 #include <stdio.h>
-int calc(char ch);
-//(5+(1+2))
+#include <stdbool.h>
+
+int calc();
+
 int main()
 {
-    char ch;
-    scanf("%c", &ch);
-    printf("\n%d\n", calc(ch));
+    printf("\n%d\n", calc());
 }
 
-int calc(char ch)
+bool charIsDigit(char ch)
 {
-    char left, sign, right;
+    return (ch >= '0' && ch <= '9');
+}
+
+int calc()
+{
+    char ch, left, sign, right;
+
+    scanf("%c", &ch);
+
     if (ch == '(')
     {
-        scanf("%c", &ch);
-        left = ch - 48;
+        left = calc();
         scanf("%c", &ch);
         sign = ch;
+        right = calc();
         scanf("%c", &ch);
-        if (ch >= '0' && ch <= '9')
+
+        if (sign == '+')
         {
-            right = ch - 48;
+            return (left + right);
         }
-        else
+        if (sign == '-')
         {
-            right = calc('(');
+            return (left - right);
         }
-            if (sign == '+')
-            {
-                return (left + right);
-            }
-            if (sign == '-')
-            {
-                return (left - right);
-            }
-            if (sign == '*')
-            {
-                return (left * right);
-            }
+        if (sign == '*')
+        {
+            return (left * right);
+        }
     }
+    return ch - '0';
 }
