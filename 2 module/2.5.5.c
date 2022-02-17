@@ -13,15 +13,15 @@ int main()
     printf("\n%d\n", modul);
     
     int first_1, second_1, max_two;
-    first_1      = 202;
-    second_1     = 134;
-    max_two      = (first_1 >= second_1) ? first_1 : second_1;
+    first_1  = 202;
+    second_1 = 134;
+    max_two  = (first_1 >= second_1) ? first_1 : second_1;
     printf("\n%d\n", max_two);
     
     int first_2, second_2, third_2, max_three;
-    first_2   = 54;
-    second_2  = 96;
-    third_2   = 72;
+    first_2  = 54;
+    second_2 = 96;
+    third_2  = 72;
     max_three = (first_2 >= second_2 && first_2 >= third_2) ? first_2 : ((second_2 >= first_2 && second_2 >= third_2) ? second_2 : third_2);
     printf("\n%d\n",max_three);
 }
