@@ -25,6 +25,7 @@ int selection(int *array, int n)
     int temp, temp_ind, max;
     while (n > 0)
     {
+        max = array[0];
         for (int i = 0; i < n; i++)
         {
             if (array[i] > max)
@@ -36,7 +37,6 @@ int selection(int *array, int n)
         temp = array[n - 1];
         array[n - 1] = max;
         array[temp_ind] = temp;
-        max = array[0];
         temp_ind = temp = 0;
         n--;
     }

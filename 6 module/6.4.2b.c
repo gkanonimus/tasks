@@ -28,13 +28,13 @@ int func_2(int *array, int x , int n)
         middle = (low + high) / 2;
         if (array[middle] < x)
         {
-            low = (low + high) / 2;
+            low = middle;
         }
         else
         {
             if (array[middle] > x)
             {
-                high /= 2;
+                high = middle;
             }
             else
             {

@@ -5,7 +5,7 @@ elements are equal) */
 
 #include <stdio.h>
 #include <stdbool.h>
-bool sort(int array[], int n);
+bool is_sort(int array[], int n);
 bool check(int array[], int n);
 
 int main()
@@ -17,11 +17,11 @@ int main()
     {
         scanf("%d", &array[i]);
     }
-    printf("\n%d\n", sort(array, n));
+    printf("\n%d\n", is_sort(array, n));
     printf("\n%d\n", check(array, n));
 }
 
-bool sort(int array[], int n)
+bool is_sort(int array[], int n)
 {
     for (int i = 0; i < n - 1; i++)
     {
@@ -35,12 +35,13 @@ bool sort(int array[], int n)
 
 bool check(int array[], int n)
 {
-    for (int i = 0; i < n; i++)
+    int m = n / 2;
+    for (int i = 0; i < m; i++, n--)
     {
         if (array[i] != array[n - 1])
         {
             return false;
-        }
-        return true;
+        }     
     }
+    return true;
 }
