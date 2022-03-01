@@ -17,6 +17,10 @@ char *strchrr (char *cs, char c)
     char *tmp = cs;
     while (*tmp != c)
     {
+        if (*tmp == '\0')
+        {
+            return '\0';
+        }
         tmp++;
     }
     return tmp;

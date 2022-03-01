@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-bool is_prefix(char *first, int n, char *second);
+bool is_prefix(char *first, char *second);
 
 int main()
 {
@@ -11,14 +11,26 @@ int main()
     scanf("%d", &m);
     char first[n];
     scanf("%s", first);
+    first[n - 1] = '\0';
     char second[m];
     scanf("%s", second);
-    printf("%d", is_prefix(first, n, second));
+    second[m - 1] = '\0';
+    printf("%d", is_prefix(first, second));
 }
 
-bool is_prefix(char *first, int n, char *second)
+bool is_prefix(char *first, char *second)
 {
-    for (int i = 0; i < n; i++)
+    int n = 0;
+    int m = 0;
+    while (first[n] != '\0')
+    {
+        n++;
+    }
+    while (second[m] != '\0')
+    {
+        m++;
+    }
+    for (int i = 0; i < n && i < m; i++)
     {
         if (first[i] != second[i])
         {

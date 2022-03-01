@@ -21,6 +21,10 @@ char *strchrr (char *cs, char c)
     }
     while (cs[i] != c)
     {
+        if (!i)
+        {
+            return '\0';
+        }
         i--;
     }
     char *temp = cs;

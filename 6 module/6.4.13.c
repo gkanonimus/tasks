@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-bool is_suffix(char *small, int s, char *big, int b);
+bool is_suffix(char *small, char *big);
 
 int main()
 {
@@ -10,32 +10,38 @@ int main()
     scanf("%d", &s);
     char small[s];
     scanf("%s", small);
+    small[s - 1] = '\0';
     
     int b;
     scanf("%d", &b);
     char big[b];
     scanf("%s", big);
+    big[b - 1] = '\0';
     
-    printf("%d", is_suffix(small, s - 1, big, b - 1));
+    printf("%d", is_suffix(small, big));
 }
 
-bool is_suffix(char *small, int s, char *big, int b)
+bool is_suffix(char *small, char *big)
 {
-    int j = 0;
-    for (int i = 0; i < b; ++i)
+    int s = 0;
+    int b = 0;
+    while (small[s] != '\0')
     {
-        if (big[i] == small[j])
+        s++;
+    }
+    while (big[b] != '\0')
+    {
+        b++;
+    }
+    int j = 0;
+    while (small[s] == big[b])
+    {
+        if (s == 0)
         {
-            ++j;
-            if (j == s)
-            {
-                return true;
-            }
+            return true;
         }
-        else
-        {
-            j = 0;
-        }
+        s--;
+        b--;
     }
     return false;
 }
