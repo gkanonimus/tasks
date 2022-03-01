@@ -16,19 +16,18 @@ int main()
     char big[b];
     scanf("%s", big);
     
-    printf("\n%d", is_suffix(small, s - 2, big, b - 1));
+    printf("%d", is_suffix(small, s - 1, big, b - 1));
 }
 
 bool is_suffix(char *small, int s, char *big, int b)
 {
-    printf("%d-%d, %c -- %c", s, b, small[0], big[0]);
     int j = 0;
     for (int i = 0; i < b; ++i)
     {
         if (big[i] == small[j])
         {
             ++j;
-            if (j == s + 1)
+            if (j == s)
             {
                 return true;
             }
