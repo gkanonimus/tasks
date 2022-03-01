@@ -33,10 +33,9 @@ bool is_suffix(char *small, char *big)
     {
         b++;
     }
-    int j = 0;
     while (small[s] == big[b])
     {
-        if (s == 0)
+        if (s == 0 || b == 0)
         {
             return true;
         }
