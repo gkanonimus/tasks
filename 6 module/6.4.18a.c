@@ -32,11 +32,11 @@ int zero(int matrix[][m], int n, int m)
             if (matrix[i][j] == 0)
             {
                 temp += 1;
-                if (temp == m - 1)
-                {
-                    counter += 1;
-                }
             }
+        }
+        if (temp == m - 1)
+        {
+            counter += 1;
         }
     }
     

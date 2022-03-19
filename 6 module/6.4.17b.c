@@ -50,7 +50,7 @@ bool is_magic(int matrix[][n], int n)
         {
             check_2 += matrix[i][j];
             check_3 += matrix[j][i];
-            if ((j == n - 1) && (check_2 != sum))
+            if ((check_2 != sum) || (check_3 != sum))
             {
                 return false;
             }

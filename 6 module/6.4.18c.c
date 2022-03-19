@@ -31,14 +31,15 @@ int sort(int matrix[][m], int n, int m)
         check = true;
         for (int j = 0; j < m - 1; j++)
         {
-            if (matrix[i][j] > matrix[i][j + 1])
+            check = (matrix[i][j] <= matrix[i][j + 1]);
+            if (check == false)
             {
-                check = false;
+                break;
             }
-            if ((j == m - 2) && (check == true))
-            {
-                counter += 1;
-            }
+        }
+        if (check == true)
+        {
+            counter += 1;
         }
     }
     return counter;

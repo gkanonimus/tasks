@@ -19,39 +19,27 @@ int main()
     }
     printf("\n\n");
     print(matrix, n, m);
-    printf("Number of the row is %d\n", max_pos(matrix, n, m));
+    printf("Index of the row is %d\n", max_pos(matrix, n, m));
 }
 
 int max_pos(int matrix[][m], int n, int m)
 {
-    int array[n];
-    for (int i = 0; i < n; i++)
-    {
-        array[i] = 0;
-    }
-    for (int i = 0; i < n; i++)
-    {
+    int max_ind = 0;
+    int max = 0;
+    
+   for (int i = 0; i < n; i++)
+   {
+        int temp = 0;
         for (int j = 0; j < m; j++)
         {
             if (matrix[i][j] > 0)
             {
-                array[i]++;
+                temp++;
             }
         }
-    }
-    printf("\n Array if positive numbers is: ");
-    for (int i = 0; i < n; i++)
-    {
-        printf("%4d ", array[i]);
-    }
-    printf("\n\n");
-    int max = array[0];
-    int max_ind = 0;
-    for (int i = 1; i < n; i++)
-    {
-        if (array[i] > max)
+        if (temp > max)
         {
-            max = array[i];
+            max = temp;
             max_ind = i;
         }
     }
