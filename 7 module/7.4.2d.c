@@ -17,12 +17,12 @@ int main()
     char str[101], *p[n];
     for (int i = 0; i < n + 1; i++)
     {
-        if (fgets (str, 100, stdin) != NULL)
+        if (fgets(str, 100, stdin) != NULL)
         {
-            p[i] = malloc (strlen(str) + 1);
+            p[i] = malloc(strlen(str) + 1);
             if (p[i])
             {
-                strcpy (p[i], str);
+                strcpy(p[i], str);
             }
         }
     }
@@ -36,10 +36,10 @@ void func(char *p[], int n)
     for (int i = 1; i < n + 1; i++)
     {
         bool check = true;
-        for (int j = 0; j < (int)strlen(p[i]) / 2; j++)
+        for (int j = 0; j < strlen(p[i]) / 2; j++)
         {
             c1 = *(p[i] + j);
-            c2 = *(p[i] + (int)strlen(p[i]) - j - 2);
+            c2 = *(p[i] + strlen(p[i]) - j - 2);
             if (c1 != c2) check = false;
         }
         if (check) counter++;

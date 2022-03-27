@@ -16,12 +16,12 @@ int main()
     char str[101], *p[n];
     for (int i = 0; i < n + 1; i++)
     {
-        if (fgets (str, 100, stdin) != NULL)
+        if (fgets(str, 100, stdin) != NULL)
         {
-            p[i] = malloc (strlen(str) + 1);
+            p[i] = malloc(strlen(str) + 1);
             if (p[i])
             {
-                strcpy (p[i], str);
+                strcpy(p[i], str);
             }
         }
     }

@@ -16,10 +16,10 @@ int main()
     {
         if (fgets (str, 100, stdin) != NULL)
         {
-            p[i] = malloc (strlen(str) + 1);
+            p[i] = malloc(strlen(str) + 1);
             if (p[i])
             {
-                strcpy (p[i], str);
+                strcpy(p[i], str);
             }
         }
     }
