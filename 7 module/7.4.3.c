@@ -22,9 +22,9 @@ int main()
       if (!p[i])
       {
           printf("Error");
-          return 0;
+          return '\0';
       }
   }
   printf("Memory allocation succeeded");
-  return 1;
+  return 0;
 }
