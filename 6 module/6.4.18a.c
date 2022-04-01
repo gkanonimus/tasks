@@ -34,7 +34,7 @@ int zero(int matrix[][m], int n, int m)
                 temp += 1;
             }
         }
-        if (temp == m - 1)
+        if (temp == m)
         {
             counter += 1;
         }
