@@ -4,6 +4,7 @@ a) memory for matrix elements was allocated in a single block */
 
 #include <stdio.h>
 #include <stdlib.h>
+void space(int *p, int n, int m);
 
 int main()
 {
@@ -13,7 +14,11 @@ int main()
     printf("Enter the number of columns: ");
     scanf("%d", &m);
     int *p;
-  
+    space(*p, n, m);
+}
+
+void space(int *p, int n, int m)
+{
     p = (int*)malloc(n * m * sizeof(int));
     if (p)
     {

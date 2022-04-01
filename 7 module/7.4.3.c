@@ -4,27 +4,31 @@ matrices are separated. The function returns a pointer to the matrix, or NULL if
 failed to allocate memory of the required size */
 
 #include <stdio.h>
-#include <malloc.h>
 #include <stdlib.h>
+int n, m;
+void space(int *p[n], int n, int m);
 
 int main()
 {
-  int n, m;
   printf("Enter the number of lines: ");
   scanf("%d", &n);
   printf("Enter the number of columns: ");
   scanf("%d", &m);
   int *p[n];
-  
-  for (int i = 0; i < n; i++)
-  {
-      p[i] = malloc(m * sizeof(int));
-      if (!p[i])
-      {
-          printf("Error");
-          return '\0';
-      }
-  }
+  space(p, n, m);
+}
+
+void space(int *p[n], int n, int m)
+{
+    for (int i = 0; i < n; i++)
+    {
+        p[i] = malloc(m * sizeof(int));
+        if (!p[i])
+        {
+            printf("Error");
+            return NULL;
+        }
+    }
   printf("Memory allocation succeeded");
   return 0;
 }
