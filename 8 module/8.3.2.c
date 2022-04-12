@@ -12,10 +12,9 @@ common points with no other circle in the plane array */
 #include <stdbool.h>
 #include <math.h>
 #include <stdlib.h>
+#define N 4
 
-int main()
-{
-    struct point
+struct point
     {
         int x;
         int y;
@@ -25,27 +24,21 @@ int main()
         int radius;
         struct point center;
     };
-    
-    struct circle plane[] = 
+
+bool checkA(struct circle *);
+bool checkB(struct circle *);
+bool checkC(struct circle *);
+
+int main()
+{
+    struct circle plane[N] = 
     {5, 1, 2,
      2, 0, 0,
      2, 1, 2,
      1, -10, -10};
     
-    //check A
-    bool checkA = false;
-    for (int i = 0; i < 4; i++)
-    {
-        for (int j = i + 1; j < 4; j++)
-        {
-            if (plane[i].center.x == plane[j].center.x && plane[i].center.y == plane[j].center.y)
-            {
-                checkA = true;
-                break;
-            }
-        }
-    }
-    printf("Check A %d\n", checkA);
+    printf("Check A %d\nCheck B %d\nCheck C %d\n", checkA(plane), 
+            checkB(plane), checkC(plane));
     
     //check B and C
     bool checkB = false;
@@ -68,5 +61,62 @@ int main()
             }
         }
     }
-    printf("Check B %d\nCheck C %d\n", checkB, checkC);
+}
+
+bool checkA(struct circle *plane)
+{
+    bool check = false;
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = i + 1; j < 4; j++)
+        {
+            if (plane[i].center.x == plane[j].center.x &&
+            plane[i].center.y == plane[j].center.y)
+            {
+                check = true;
+                break;
+            }
+        }
+    }
+    return check;
+}
+
+bool checkB(struct circle *plane)
+{
+    bool check = false;
+    float l;
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = i + 1; j < 4; j++)
+        {
+            l = pow((plane[j].center.x - plane[i].center.x), 2) +
+            pow((plane[j].center.y - plane[j].center.y), 2);
+            if (abs(plane[i].radius - plane[j].radius) > l)
+            {
+                check = true;
+                break;
+            }
+        }
+    }
+    return check;
+}
+
+bool checkC(struct circle *plane)
+{
+    bool check = false;
+    float l;
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = i + 1; j < 4; j++)
+        {
+            l = pow((plane[j].center.x - plane[i].center.x), 2) +
+            pow((plane[j].center.y - plane[j].center.y), 2);
+            if (plane[i].radius + plane[j].radius < l)
+            {
+                check = true;
+                break;
+            }
+        }
+    }
+    return check;
 }
