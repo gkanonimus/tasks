@@ -1,3 +1,13 @@
+/* Let an "integer" circle on the plane be described as follows:
+struct point { int x; int y; };
+struct circle { int radius; struct point center; };
+Let there be an array containing information about circles on the plane:
+struct circle plane[30];
+Describe a function that defines:
+a) are there at least two concentric circles among these circles;
+b) whether there are at least two nested (not necessarily concentric) circles among these circles;
+c) is there at least one “solitary” one among these circles, that is, without
+common points with no other circle in the plane array */
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
