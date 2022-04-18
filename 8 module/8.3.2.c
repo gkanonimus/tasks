@@ -15,15 +15,15 @@ common points with no other circle in the plane array */
 #define N 4
 
 struct point
-    {
-        int x;
-        int y;
-    };
-    struct circle
-    {
-        int radius;
-        struct point center;
-    };
+{
+    int x;
+    int y;
+};
+struct circle
+{
+    int radius;
+    struct point center;
+};
 
 bool checkA(struct circle *);
 bool checkB(struct circle *);
@@ -39,28 +39,6 @@ int main()
     
     printf("Check A %d\nCheck B %d\nCheck C %d\n", checkA(plane), 
             checkB(plane), checkC(plane));
-    
-    //check B and C
-    bool checkB = false;
-    bool checkC = false;
-    float l;
-    for (int i = 0; i < 4; i++)
-    {
-        for (int j = i + 1; j < 4; j++)
-        {
-            l = pow((plane[j].center.x - plane[i].center.x), 2) + pow((plane[j].center.y - plane[j].center.y), 2);
-            if (abs(plane[i].radius - plane[j].radius) > l)
-            {
-                checkB = true;
-                break;
-            }
-            if (plane[i].radius + plane[j].radius < l)
-            {
-                checkC = true;
-                break;
-            }
-        }
-    }
 }
 
 bool checkA(struct circle *plane)
