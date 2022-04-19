@@ -5,17 +5,16 @@ zero rows (assume that there is only one such matrix) */
 #include <stdio.h>
 #include <stdlib.h>
 int n;
-int func(int *ptr);
+int func();
 
 int main()
 {
     printf("Enter n: ");
     scanf("%d", &n);
-    int *ptr1, *ptr2, *ptr3;
     
-    int count1 = func(ptr1);	
-    int count2 = func(ptr2);
-    int count3 = func(ptr3);
+    int count1 = func();	
+    int count2 = func();
+    int count3 = func();
     
     
     if (count1 >= count2 && count1 >= count3)
@@ -30,14 +29,12 @@ int main()
     {
         printf("Index of string is 2\n");
     }
-    free(ptr1);
-    free(ptr2);
-    free(ptr3);
 }
 
-int func(int *ptr)
+int func()
 {
     int count = 0;
+    int *ptr;
     printf("Enter array:\n");
     ptr = (int*)malloc(n * n * sizeof(int));
     for (int i = 0; i < n * n; i++)
@@ -59,5 +56,6 @@ int func(int *ptr)
             count++;
         }
     }
+    free(ptr);
     return count;
 }
