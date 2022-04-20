@@ -24,7 +24,7 @@ char out[30];
 int  checkA(struct data *);
 int  checkB(struct data *, char input[30]);
 int  checkC(struct data *);
-void checkD(struct data *, char out[30]);
+char* checkD(struct data *, char out[30]);
 
 int main()
 {
@@ -34,13 +34,13 @@ int main()
      "Kiryanov", "Viktor", 28,
      "Gavrilin", "Artem", 17,
      "Perepelkin", "Nikita", 20};
-     
-     printf("Enter a name: ");
-     scanf("%s", input);
+    
+    printf("Enter a name: ");
+    scanf("%s", input);
     printf("Check A %d\nCheck B %d\nCheck C %d\n",
            checkA(base), checkB(base, input), checkC(base));
     checkD(base, out);
-    printf("%s\n", out);
+    printf("%s\n", checkD(base, out));
 
 }
 
@@ -86,7 +86,7 @@ int checkC(struct data *base)
     return counter;
 }
 
-void checkD(struct data *base, char out[30])
+char* checkD(struct data *base, char out[30])
 {
     float mid = 0;
     for (int i = 0; i < N; i++)
@@ -96,14 +96,15 @@ void checkD(struct data *base, char out[30])
     mid /= N;
     
     int diff = abs((mid - base[0].age));
+    int ind = 0;
     strcpy(out, base[0].name);
     for (int i = 1; i < N; i++)
     {
         if (abs((mid - base[i].age)) < diff)
         {
             diff = abs((mid - base[i].age));
-            strcpy(out, base[i].name);
+            ind = i;
         }
     }
-    return;
+    return base[ind].name;
 }
