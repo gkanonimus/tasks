@@ -1,29 +1,25 @@
 /* Determine how many times a sequence of for characters occurs in a file */
 
 #include <stdio.h>
+#define SIZE 100
 
 int main()
 {
     FILE *file;
+    char str[SIZE];
     int count = 0;
-    char str[1000];
-    char ch;
-    file = fopen("input.txt", "r");
-    while (fscanf(file, "%c", &ch) != EOF)
+    file      = fopen("input.txt", "r");
+    
+    while (fgets(str, SIZE, file))
     {
-        if (ch == 'f')
+        for (int i = 0; str[i] != '\0'; i++)
         {
-            fscanf(file, "%c", &ch);
-            if (ch == 'o')
+            if (str[i] == 'f' && str[i + 1] == 'o' && str[i + 2] == 'r')
             {
-                fscanf(file, "%c", &ch);
-                if (ch == 'r')
-                {
-                    count++;
-                }
+                count++;
             }
         }
     }
     fclose (file);
-    printf ("%d\n", count); 
+    printf("%d\n", count);
 }

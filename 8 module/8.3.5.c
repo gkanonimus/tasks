@@ -99,31 +99,34 @@ float calcB(struct shape *plane)
 float calcC(struct shape *plane)
 {
     float area = 0.0;
+    
     for (int i = 0; i < 50; i++)
     {
+        float trarea_calc = PI * plane[i].info.ci.r * plane[i].info.ci.r;
+        float hp = (plane[i].info.ti.a + plane[i].info.ti.b + plane[i].info.ti.c) / 2;
+        float heron_area = (sqrt(hp * (hp - plane[i].info.ti.a) * (hp - plane[i].info.ti.b) *
+            (hp - plane[i].info.ti.c)));
+        float rearea = plane[i].info.ri.w * plane[i].info.ri.h;
         if (plane[i].kind == circle)
         {
-            if (area < (PI * plane[i].info.ci.r * plane[i].info.ci.r))
+            if (area < trarea_calc)
             {
-                area = PI * plane[i].info.ci.r * plane[i].info.ci.r;
+                area = trarea_calc;
             }
             
         }
         if (plane[i].kind == triangle)
         {
-            float hp = (plane[i].info.ti.a + plane[i].info.ti.b + plane[i].info.ti.c) / 2;
-            if (sqrt(hp * (hp - plane[i].info.ti.a) * (hp - plane[i].info.ti.b) *
-            (hp - plane[i].info.ti.c)) > area)
+            if (heron_area > area)
             {
-                area = sqrt(hp * (hp - plane[i].info.ti.a) * (hp - plane[i].info.ti.b) *
-            (hp - plane[i].info.ti.c));
+                area = heron_area;
             }
         }
         if (plane[i].kind == rectangle)
         {
-            if (plane[i].info.ri.w * plane[i].info.ri.h > area)
+            if (rearea > area)
             {
-                area = plane[i].info.ri.w * plane[i].info.ri.h;
+                area = rearea;
             }
         }
     }

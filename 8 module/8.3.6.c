@@ -1,5 +1,3 @@
-/* Using the descriptions from the previous problem, describe a function that fills the plane array */
-
 #include <stdio.h>
 #define N 50
 
@@ -18,6 +16,8 @@ struct shape
     } info;
 };
 void fill(struct shape *);
+void print_shape(struct shape *pr);
+
 
 int main()
 {
@@ -27,14 +27,13 @@ int main()
 
 void fill(struct shape *plane)
 {
+    struct shape pr;
     for (int i = 0; i < 50; i++)
     {
         if (i <= 9)
         {
             plane[i].kind      = circle;
-            plane[i].info.ci.r = i;
-            printf("%d %.2f\n", plane[i].kind, plane[i].info.ci.r);
-            
+            plane[i].info.ci.r = i + 1;
         }
         if (i > 9 && i < 30)
         {
@@ -42,14 +41,30 @@ void fill(struct shape *plane)
             plane[i].info.ti.a = i - 9;
             plane[i].info.ti.b = 2 * (i - 9);
             plane[i].info.ti.c = 2 * (i - 9);
-            printf("%d %.2f %.2f %.2f\n", plane[i].kind, plane[i].info.ti.a, plane[i].info.ti.b, plane[i].info.ti.c);
         }
         if (i > 29)
         {
             plane[i].kind      = rectangle;
             plane[i].info.ri.w = i - 29;
             plane[i].info.ri.h = i - 29;
-            printf("%d %.2f %.2f\n", plane[i].kind, plane[i].info.ri.w, plane[i].info.ri.h);
         }
+        pr = plane[i];
+        print_shape(&pr);
+    }
+}
+
+void print_shape(struct shape *pr)
+{
+    if (pr->kind == circle)
+    {
+        printf("Circle %.2f\n", pr->info.ci.r);
+    }
+    if (pr->kind == triangle)
+    {
+        printf("Triangle %.2f %.2f %.2f\n", pr->info.ti.a, pr->info.ti.b, pr->info.ti.c);
+    }
+    if (pr->kind == rectangle)
+    {
+        printf("Rectangle %.2f %.2f\n", pr->info.ri.w, pr->info.ri.h);
     }
 }
