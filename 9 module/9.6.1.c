@@ -12,9 +12,9 @@ int main()
     
     while (fgets(str, SIZE, file))
     {
-        for (int i = 0; str[i] != '\0'; i++)
+        for (int i = 2; str[i] != '\0'; i++)
         {
-            if (str[i] == 'f' && str[i + 1] == 'o' && str[i + 2] == 'r')
+            if (str[i - 2] == 'f' && str[i - 1] == 'o' && str[i] == 'r')
             {
                 count++;
             }

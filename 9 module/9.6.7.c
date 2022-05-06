@@ -1,23 +1,24 @@
 /* Delete all empty lines in file */
 
 #include <stdio.h>
-#include <stdbool.h>
 
 int main()
 {
     FILE *file;
-    FILE *file2;
-    file  = fopen("input.txt", "r");
-    file2 = fopen("input2.txt", "w");
-    char c;
+    file  = fopen("input.txt", "w+");
+    fprintf(file, "first\n\nsecond\n\nthird\n\nfourth\n\nfifth");
+    fclose(file);
+    file  = fopen("input.txt", "r+");
+    char c1;
     char c2;
     
-    while ((c = fgetc(file)) != EOF)
+    while ((c1 = fgetc(file)) != EOF)
     {
-        if (c2 != c && c2 != '\n')
+        if (c1 == '\n' && c2 == '\n')
         {
-            fputc((char)c, file2);
+            fseek(file, -1, SEEK_CUR);
+            fputc(8, file);
         }
-        c2 = c;
+        c2 = c1;
     }
 }
