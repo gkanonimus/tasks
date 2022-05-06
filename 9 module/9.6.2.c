@@ -18,17 +18,23 @@ int main()
     
     while (fgets(str, SIZE, file))
     {
-        char *ptr = str;
         if (strlen(str) >= l + 1)
         {
             for (int i = 0; str[i] != '\n'; i++)
             {
-                if (*(ptr + i) == in[0])
+                if (str[i] == in[0])
                 {
                     check = 0;
-                    for (int j = 0; j < l;j++)
+                    for (int j = 0; j < l; j++)
                     {
-                        check += (*(ptr + i + j) == in[j]);
+                        if (i + j <= strlen(str))
+                        {
+                            check += (str[i + j] == in[j]);
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
                     if (check == l)
                     {
