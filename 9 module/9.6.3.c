@@ -3,22 +3,25 @@ several, then print the first one */
 
 #include <stdio.h>
 #include <string.h>
-#define BUFF 150
 
 int main()
 {
     FILE *file;
     file = fopen("input.txt", "r");
-    char ch;
-    char str[BUFF];
+    int buff;
+    fseek(file, 0, SEEK_END);
+    buff = ftell(file);
+    fseek(file, 0, SEEK_SET);
+    char str[buff];
     
+    char ch;
     int size = 0;
     int max = 0;
     char *ptr;
     
-    for (int i = 0; (ch = fgetc(file)) != EOF; i++)
+    for (int i = 0; i < buff; i++)
     {
-        str[i] = ch;
+        str[i] = fgetc(file);
     }
     for (int i = 0; str[i] != '\0'; i++)
     {
