@@ -3,8 +3,8 @@ keyboard) as a substring. It is known that the length of a line in a file does n
 
 #include <stdio.h>
 #include <string.h>
-#define SIZE 150
-#define N 20
+#define SIZE 80
+#define N 80
 
 int main()
 {
@@ -14,24 +14,27 @@ int main()
     scanf("%s", in);
     file = fopen("input.txt", "r");
     int l = (int)strlen(in);
-    int check = 0;
+    int check;
     
     while (fgets(str, SIZE, file))
     {
         char *ptr = str;
-        for (int i = 0; str[i] != '\n'; i++)
+        if (strlen(str) >= l + 1)
         {
-            if (*(ptr + i) == in[0])
+            for (int i = 0; str[i] != '\n'; i++)
             {
-                check = 0;
-                for (int j = 0; j < l;j++)
+                if (*(ptr + i) == in[0])
                 {
-                    check += (*(ptr + i + j) == in[j]);
-                }
-                if (check == l)
-                {
-                    printf("%s", str);
-                    break;
+                    check = 0;
+                    for (int j = 0; j < l;j++)
+                    {
+                        check += (*(ptr + i + j) == in[j]);
+                    }
+                    if (check == l)
+                    {
+                        printf("%s", str);
+                        break;
+                    }
                 }
             }
         }
