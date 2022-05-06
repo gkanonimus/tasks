@@ -5,20 +5,31 @@
 int main()
 {
     FILE *file;
-    file  = fopen("input.txt", "w+");
-    fprintf(file, "first\n\nsecond\n\nthird\n\nfourth\n\nfifth");
+    FILE *file2;
+    file  = fopen("input.txt", "w");
+    fprintf(file, "first\n\n\n\nsecond\n\n\n\nthird\n\n\n\nfourth\n\n\n\nfifth");
     fclose(file);
-    file  = fopen("input.txt", "r+");
-    char c1;
-    char c2;
+    file  = fopen("input.txt", "r");
     
-    while ((c1 = fgetc(file)) != EOF)
+    int buff;
+    fseek(file, 0, SEEK_END);
+    buff = ftell(file);
+    fseek(file, 0, SEEK_SET);
+    char str[buff];
+    
+    file2 = fopen("new_file.txt", "w");
+    char c;
+    char c2;
+
+    for (int i = 0; i < buff; i++)
     {
-        if (c1 == '\n' && c2 == '\n')
+        str[i] = fgetc(file);
+        if (str[i - 1] == '\n' && str[i] == '\n');
+        else
         {
-            fseek(file, -1, SEEK_CUR);
-            fputc(8, file);
+            fputc((char)str[i], file2);
         }
-        c2 = c1;
     }
+    remove("input.txt");
+    rename("new_file.txt", "input.txt");
 }
