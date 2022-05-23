@@ -7,43 +7,28 @@ struct listnode
 {
     int elem;
     struct listnode *next;
-} *L, *p;
-
-struct listnode * build(int *array, int length)
-{
-    p = malloc(sizeof(struct listnode));
-    struct listnode *R;
-    R = p;
-    for (int i = length - 1; i >= 0; i--)
-    {
-        p->elem = array[i];
-        p->next = malloc(sizeof(struct listnode));
-        p = p->next;
-    }
-    return R;
-}
+};
 
 struct listnode * reverse(struct listnode *L)
 {
-    struct listnode *temp;
-    temp = L;
-    int length = 0;
-    while (temp != NULL)
+    struct listnode *q, *q2;
+    q = malloc(sizeof(struct listnode));
+    q->next = NULL;
+    q->elem = L->elem;
+    while (L != NULL)
     {
-        length++;
-        temp = temp->next;
-    }
-    int array[length];
-    for (int i = 0; i < length; i++)
-    {
-        array[i] = L->elem;
+        q2 = malloc(sizeof(struct listnode));
+        q2->next = q;
+        q2->elem = L->elem;
+        q = q2;
         L = L->next;
     }
-    return build(array, length);
+    return q2;
 }
 
 int main()
 {
+    struct listnode *L, *p;
     p = malloc(sizeof(struct listnode));
     p->elem = 5;
     
