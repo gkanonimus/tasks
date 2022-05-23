@@ -8,7 +8,7 @@ struct listnode
 {
     int elem;
     struct listnode *next;
-} *L, *p;
+};
 
 struct listnode * copy(struct listnode *L)
 {
@@ -22,11 +22,13 @@ struct listnode * copy(struct listnode *L)
         L = L->next;
         q = q->next;
     }
+    q->next = NULL;
     return R;
 }
 
 int main()
 {
+    struct listnode *L, *p;
     p = malloc(sizeof(struct listnode));
     p->elem = 5;
     

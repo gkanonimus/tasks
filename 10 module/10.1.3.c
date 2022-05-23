@@ -9,10 +9,11 @@ struct listnode
 {
     int elem;
     struct listnode *next;
-} *L, *p, *q;
+};
 
-int has_duplicate(struct listnode *L)
+int has_duplicate(struct listnode *L, struct listnode *p)
 {
+    struct listnode *q;
     p = L;
     while (p->next != NULL)
     {
@@ -32,6 +33,7 @@ int has_duplicate(struct listnode *L)
 
 int main()
 {
+    struct listnode *L, *p;
     p = malloc(sizeof(struct listnode));
     p->elem = 5;
     
@@ -48,5 +50,5 @@ int main()
     p->next->elem = 3;
     p->next->next = NULL;
     
-    printf("%d\n", has_duplicate(L));
+    printf("%d\n", has_duplicate(L, p));
 }

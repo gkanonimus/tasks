@@ -1,5 +1,4 @@
-/* Describe the function sum2(L) that returns the sum of the last and
-penultimate numbers in the list L (if any) */
+/* Describe the function sum2(L) that returns the sum of the last and prelast numbers in the list L (if any) */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,9 +7,9 @@ struct listnode
 {
     int elem;
     struct listnode *next;
-} *L, *p;
+};
 
-int sum2(struct listnode *L)
+int sum2(struct listnode *L, struct listnode *p)
 {
     if (p == NULL || p->next == NULL)
     {
@@ -31,6 +30,7 @@ int sum2(struct listnode *L)
 
 int main()
 {
+    struct listnode *L, *p;
     p = malloc(sizeof(struct listnode));
     p->elem = 5;
     
@@ -47,5 +47,5 @@ int main()
     p->next->elem = 7;
     p->next->next = NULL;
     
-    printf("%d\n", sum2(L));
+    printf("%d\n", sum2(L, p));
 }
