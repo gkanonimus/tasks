@@ -9,19 +9,24 @@ the function returns a pointer to the beginning of the constructed list */
 struct listnode 
 {
     int elem;
-    struct listnode *prev;
-} *p;
+    struct listnode *next;
+};
 
-struct listnode * build(int *array)
+struct listnode * build(int *array, int length)
 {
-    for (int i = SIZE - 1; i >= 0; i--)
+    struct listnode *p;
+    p = malloc(sizeof(struct listnode));
+    p->next = NULL;
+    struct listnode *R;
+    R = p;
+    for (int i = length - 1; i >= 0; i--)
     {
-        p = malloc(sizeof(struct listnode));
         p->elem = array[i];
-        printf("%d\n", p->elem);
-        p = p->prev;
+        p->next = malloc(sizeof(struct listnode));
+        p = p->next;
+        p->next = NULL;
     }
-    return p;
+    return R;
 }
 
 int main()
@@ -31,5 +36,10 @@ int main()
     {
         array[i] = i * i;
     }
-    struct listnode * first = build(array);
+    struct listnode * first = build(array, SIZE);
+    while (first->next != NULL)
+    {
+        printf("%d\n", first->elem);
+        first = first->next;
+    }
 }

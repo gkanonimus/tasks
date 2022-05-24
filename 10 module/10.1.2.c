@@ -8,9 +8,9 @@ struct listnode
 {
     int elem;
     struct listnode *next;
-} *L, *p;
+};
 
-int max(struct listnode *L)
+int max(struct listnode *L, struct listnode *p)
 {
     p = L;
     int max = p->elem;
@@ -27,6 +27,7 @@ int max(struct listnode *L)
 
 int main()
 {
+    struct listnode *L, *p;
     p = malloc(sizeof(struct listnode));
     p->elem = 5;
     
@@ -43,5 +44,5 @@ int main()
     p->next->elem = 7;
     p->next->next = NULL;
     
-    printf("%d\n", max(L));
+    printf("%d\n", max(L, p));
 }
