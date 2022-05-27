@@ -4,7 +4,6 @@ the function returns a pointer to the beginning of the constructed list */
 
 #include <stdio.h>
 #include <stdlib.h>
-#define SIZE 5
 
 struct listnode 
 {
@@ -12,34 +11,44 @@ struct listnode
     struct listnode *next;
 };
 
-struct listnode * build(int *array, int length)
+struct listnode *build(int *array, int length)
 {
-    struct listnode *p;
+    if (length < 1)
+    {
+        return NULL;
+    }
+    
+    struct listnode *p, *R;
     p = malloc(sizeof(struct listnode));
-    p->next = NULL;
-    struct listnode *R;
     R = p;
-    for (int i = length - 1; i >= 0; i--)
+    
+    for (int i = 0; i < length; i++)
     {
         p->elem = array[i];
+        if (i + 1 == length)
+        {
+            p->next = NULL;
+            return R;
+        }
         p->next = malloc(sizeof(struct listnode));
         p = p->next;
-        p->next = NULL;
     }
     return R;
 }
 
 int main()
 {
-    int array[SIZE];
-    for (int i = 0; i < SIZE; i++)
+    int length = 5;
+    int array[length];
+    for (int i = 0; i < length; i++)
     {
         array[i] = i * i;
     }
-    struct listnode * first = build(array, SIZE);
-    while (first->next != NULL)
+    
+    struct listnode *L = build(array, length);
+    while (L != NULL)
     {
-        printf("%d\n", first->elem);
-        first = first->next;
+        printf("%d\n", L->elem);
+        L = L->next;
     }
 }

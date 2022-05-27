@@ -10,17 +10,21 @@ struct listnode
     struct listnode *next;
 };
 
-int max(struct listnode *L, struct listnode *p)
+int max(struct listnode *L)
 {
-    p = L;
-    int max = p->elem;
-    while (p->next != NULL)
+    if (L == NULL)
     {
-        if (p->next->elem > max)
+        return -1;
+    }
+    struct listnode *temp = L;
+    int max = temp->elem;
+    while (temp->next != NULL)
+    {
+        temp = temp->next;
+        if (temp->elem > max)
         {
-            max = p->next->elem;
+            max = temp->elem;
         }
-        p = p->next;
     }
     return max;
 }
@@ -29,20 +33,26 @@ int main()
 {
     struct listnode *L, *p;
     p = malloc(sizeof(struct listnode));
-    p->elem = 5;
-    
-    p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 8;
     L = p;
-    p = p->next; 
-
+    p->elem = 5;
     p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 3;
+    
+    p = p->next; 
+    p->elem = 3;
+    p->next = malloc(sizeof(struct listnode));
     p = p->next;
     
-    p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 7;
-    p->next->next = NULL;
     
-    printf("%d\n", max(L, p));
+    p->elem = 4;
+    p->next = malloc(sizeof(struct listnode));
+    p = p->next;
+    
+    p->elem = 8;
+    p->next = malloc(sizeof(struct listnode));
+    p = p->next;
+    
+    p->elem = 7;
+    p->next = NULL;
+    
+    printf("%d\n", max(L));
 }

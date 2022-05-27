@@ -9,11 +9,18 @@ struct listnode
     struct listnode *next;
 };
 
-struct listnode * insert(struct listnode *L, int x)
+struct listnode *insert(struct listnode *L, int x)
 {
-    struct listnode *q, *R;
-    R = L;
+    struct listnode *q;
     q = malloc(sizeof(struct listnode));
+    q->elem = x;
+    q->next = NULL;
+    if (L == NULL)
+    {
+        return q;
+    }
+    
+    struct listnode *R = L;
     while (L != NULL)
     {
         if (L->elem > x)
@@ -24,32 +31,40 @@ struct listnode * insert(struct listnode *L, int x)
             L->next = q;
             return R;
         }
+        if (L->next == NULL)
+        {
+            L->next = q;
+            return R;
+        }
         L = L->next;
    }
+   return R;
 }
 
 int main()
 {
     struct listnode *L, *p;
     p = malloc(sizeof(struct listnode));
-    p->elem = 1;
-    
-    p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 2;
     L = p;
+    p->elem = 1;
+    p->next = malloc(sizeof(struct listnode));
+    
     p = p->next; 
-
+    p->elem = 2;
     p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 4;
     p = p->next;
     
+    
+    p->elem = 4;
     p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 8;
     p = p->next;
     
+    p->elem = 8;
     p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 16;
-    p->next->next = NULL;
+    p = p->next;
+    
+    p->elem = 16;
+    p->next = NULL;
     
     int x;
     printf("Enter your number: ");
