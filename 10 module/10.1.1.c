@@ -9,23 +9,19 @@ struct listnode
     struct listnode *next;
 };
 
-int sum2(struct listnode *L, struct listnode *p)
+int sum2(struct listnode *L)
 {
-    if (p == NULL || p->next == NULL)
+    struct listnode *temp;
+    if (L == NULL || L->next == NULL)
     {
-       return '\0';
+       return -1;
     }
-    else
+    temp = L;
+    while (temp->next->next != NULL)
     {
-        int sum = 0;
-        p = L;
-        while (p->next->next != NULL)
-        {
-            p = p->next;
-        }
-        sum += p->elem + p->next->elem;
-        return sum;
+        temp = temp->next;
     }
+    return temp->elem + temp->next->elem;
 }
 
 int main()
@@ -33,19 +29,10 @@ int main()
     struct listnode *L, *p;
     p = malloc(sizeof(struct listnode));
     p->elem = 5;
-    
-    p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 8;
     L = p;
-    p = p->next; 
-
-    p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 3;
-    p = p->next;
-    
     p->next = malloc(sizeof(struct listnode));
     p->next->elem = 7;
     p->next->next = NULL;
     
-    printf("%d\n", sum2(L, p));
+    printf("%d\n", sum2(L));
 }
