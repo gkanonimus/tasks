@@ -1,4 +1,4 @@
-/* Describe a function reverse(L) that reverses the order of numbers in the list L. (Recommendation: build a new list by adding elements to its beginning.) */
+/* Describe a function sort(L) that sorts a list L in non-decreasing order */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,27 +9,40 @@ struct listnode
     struct listnode *next;
 };
 
-struct listnode *reverse(struct listnode *L)
+struct listnode *find_min(struct listnode *top)
+{
+    struct listnode *find = top->next;
+ 
+    while (find != NULL)
+    {
+        if (find->elem < headtop->elem)
+        {
+            top = find;
+        }
+        find = find->next;
+    }
+    return top;
+}
+ 
+void sort(struct listnode *L)
 {
     if (L == NULL)
     {
-        return NULL;
+        return;
     }
     
-    struct listnode *q, *q2;
-    q = malloc(sizeof(struct listnode));
-    q->elem = L->elem;
-    q->next = NULL;
-    L = L->next;
     while (L != NULL)
     {
-        q2 = malloc(sizeof(struct listnode));
-        q2->elem = L->elem;
-        q2->next = q;
-        q = q2;
+        struct listnode *min = find_min(L);
+ 
+        if (min != L)
+        {
+            int temp  = L->elem;
+            L->elem   = min->elem;
+            min->elem = temp;
+        }
         L = L->next;
     }
-    return q;
 }
 
 int main()
@@ -39,25 +52,20 @@ int main()
     L = p;
     p->elem = 5;
     p->next = malloc(sizeof(struct listnode));
-    
-    p = p->next; 
-    p->elem = 3;
-    p->next = malloc(sizeof(struct listnode));
     p = p->next;
-    
-    
-    p->elem = 4;
-    p->next = malloc(sizeof(struct listnode));
-    p = p->next;
-    
     p->elem = 8;
     p->next = malloc(sizeof(struct listnode));
     p = p->next;
-    
+    p->elem = 3;
+    p->next = malloc(sizeof(struct listnode));
+    p = p->next;
+    p->elem = 4;
+    p->next = malloc(sizeof(struct listnode));
+    p = p->next;
     p->elem = 7;
     p->next = NULL;
     
-    L = reverse(L);
+    sort(L);
     while (L != NULL)
     {
         printf("%d\n", L->elem);

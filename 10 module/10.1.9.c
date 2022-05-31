@@ -10,22 +10,31 @@ struct listnode
     struct listnode *next;
 };
 
-bool inside(int number, struct listnode *R2)
+bool inside(int number, struct listnode *R)
 {
-    while (R2 != NULL)
+    while (R != NULL)
     {
-        if (number == R2->elem)
+        if (number == R->elem)
         {
             return true;
         }
-        R2 = R2->next;
+        R = R->next;
     }
     return false;
 }
 
-struct listnode * filter(struct listnode *L, struct listnode *R)
+struct listnode *filter(struct listnode *L, struct listnode *R)
 {
-    struct listnode *ret, *ret2, *R2;
+    if (L == NULL)
+    {
+        return NULL;
+    }
+    if (R == NULL)
+    {
+        return L;
+    }
+    
+    struct listnode *ret, *ret2;
     ret = malloc(sizeof(struct listnode));
     ret2 = ret;
     
@@ -36,47 +45,54 @@ struct listnode * filter(struct listnode *L, struct listnode *R)
             ret->elem = L->elem;
             ret->next = malloc(sizeof(struct listnode));
             ret       = ret->next;
-            R         = R->next;
         }
         L = L->next;
     }
-    ret->next = NULL;
+    ret = NULL;
     return ret2;
 }
 
 int main()
 {
-    struct listnode *L, *p, *R, *q;
+    struct listnode *L, *p;
     p = malloc(sizeof(struct listnode));
     L = p;
     p->elem = 5;
     p->next = malloc(sizeof(struct listnode));
-    p = p->next;
-    p->elem = 8;
-    p->next = malloc(sizeof(struct listnode));
-    p = p->next;
+    
+    p = p->next; 
     p->elem = 3;
     p->next = malloc(sizeof(struct listnode));
     p = p->next;
+    
+    
     p->elem = 4;
     p->next = malloc(sizeof(struct listnode));
     p = p->next;
+    
+    p->elem = 8;
+    p->next = malloc(sizeof(struct listnode));
+    p = p->next;
+    
     p->elem = 7;
     p->next = NULL;
     
+    struct listnode *R, *q;
     q = malloc(sizeof(struct listnode));
     R = q;
     q->elem = 5;
     q->next = malloc(sizeof(struct listnode));
+    
     q = q->next;
     q->elem = 3;
     q->next = malloc(sizeof(struct listnode));
+    
     q = q->next;
     q->elem = 7;
     q->next = NULL;
     
     L = filter(L, R);
-    while (L->next != NULL)
+    while (L != NULL)
     {
         printf("%d\n", L->elem);
         L = L->next;

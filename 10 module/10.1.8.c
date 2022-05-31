@@ -13,8 +13,17 @@ struct listnode
 
 bool same(struct listnode *L, struct listnode *R)
 {
-    while (L != NULL)
+    if (L == NULL && R == NULL)
     {
+        return true;
+    }
+    
+    while (L != NULL || R != NULL)
+    {
+        if (L == NULL && R != NULL || L != NULL && R == NULL)
+        {
+            return false;
+        }
         if (L->elem != R->elem)
         {
             return false;
@@ -27,38 +36,49 @@ bool same(struct listnode *L, struct listnode *R)
 
 int main()
 {
-    struct listnode *L, *p, *R, *q;
+    struct listnode *L, *p;
     p = malloc(sizeof(struct listnode));
     L = p;
     p->elem = 5;
     p->next = malloc(sizeof(struct listnode));
-    p = p->next;
-    p->elem = 8;
-    p->next = malloc(sizeof(struct listnode));
-    p = p->next;
+    
+    p = p->next; 
     p->elem = 3;
     p->next = malloc(sizeof(struct listnode));
     p = p->next;
+    
+    
     p->elem = 4;
     p->next = malloc(sizeof(struct listnode));
     p = p->next;
+    
+    p->elem = 8;
+    p->next = malloc(sizeof(struct listnode));
+    p = p->next;
+    
     p->elem = 7;
     p->next = NULL;
     
+    struct listnode *R, *q;
     q = malloc(sizeof(struct listnode));
     R = q;
     q->elem = 5;
     q->next = malloc(sizeof(struct listnode));
-    q = q->next;
-    q->elem = 8;
-    q->next = malloc(sizeof(struct listnode));
-    q = q->next;
+    
+    q = q->next; 
     q->elem = 3;
     q->next = malloc(sizeof(struct listnode));
     q = q->next;
+    
+    
     q->elem = 4;
     q->next = malloc(sizeof(struct listnode));
     q = q->next;
+    
+    q->elem = 8;
+    q->next = malloc(sizeof(struct listnode));
+    q = q->next;
+    
     q->elem = 7;
     q->next = NULL;
     

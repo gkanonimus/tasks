@@ -10,19 +10,29 @@ struct listnode
     struct listnode *next;
 };
 
-struct listnode * copy(struct listnode *L)
+struct listnode *copy(struct listnode *L)
 {
+    if (L == NULL)
+    {
+        return NULL;
+    }
+
     struct listnode *q, *R;
     q = malloc(sizeof(struct listnode));
     R = q;
+    
     while (L != NULL)
     {
-        q->next = malloc(sizeof(struct listnode));
         q->elem = L->elem;
+        if (L->next == NULL)
+        {
+            q->next == NULL;
+            return R;
+        }
+        q->next = malloc(sizeof(struct listnode));
         L = L->next;
         q = q->next;
     }
-    q->next = NULL;
     return R;
 }
 
@@ -30,27 +40,29 @@ int main()
 {
     struct listnode *L, *p;
     p = malloc(sizeof(struct listnode));
-    p->elem = 5;
-    
-    p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 8;
     L = p;
+    p->elem = 5;
+    p->next = malloc(sizeof(struct listnode));
+    
     p = p->next; 
-
+    p->elem = 3;
     p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 3;
     p = p->next;
     
+    
+    p->elem = 4;
     p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 4;
     p = p->next;
     
+    p->elem = 8;
     p->next = malloc(sizeof(struct listnode));
-    p->next->elem = 7;
-    p->next->next = NULL;
+    p = p->next;
     
-    struct listnode * R = copy(L);
-    while (R->next != NULL)
+    p->elem = 7;
+    p->next = NULL;
+    
+    struct listnode *R = copy(L);
+    while (R != NULL)
     {
         printf("%d\n", R->elem);
         R = R->next;
