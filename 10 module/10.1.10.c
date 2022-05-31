@@ -15,7 +15,7 @@ struct listnode *find_min(struct listnode *top)
  
     while (find != NULL)
     {
-        if (find->elem < headtop->elem)
+        if (find->elem < top->elem)
         {
             top = find;
         }
