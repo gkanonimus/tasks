@@ -6,7 +6,6 @@ arrays and dynamic memory */
 #include <stdio.h>
 #include <stdlib.h>
 
-int left, right;
 void print();
 FILE *file;
 FILE *file2;
@@ -17,38 +16,30 @@ int main()
     file  = fopen("a.txt", "r");
     file2 = fopen("b.txt", "r");
     file3 = fopen("c.txt", "w");
-    
-    fscanf(file, "%d", &left);
-    fscanf(file2, "%d", &right);
     print();
-    if (left >= right)
-    {
-        fprintf(file3, "%d", left);
-    }
-    else
-    {
-        fprintf(file3, "%d", right);
-    }
 }
 
 void print()
 {
-    if (left >= right)
+    int left, right;
+    while (fscanf(file, "%d", &left) == 1)
+    {
+        while (fscanf(file2, "%d", &right) == 1 && left >= right)
+        {
+            fprintf(file3, "%d ", right);
+        }
+        fprintf(file3, "%d ", left);
+        int shift = 0 , temp = right;
+        while (temp != 0)
+        {
+            shift++;
+            temp /= 10;
+        }
+        fseek(file2, -shift, SEEK_CUR);
+    }
+    while (fscanf(file2, "%d", &right) != EOF)
     {
         fprintf(file3, "%d ", right);
-        if (fscanf(file2, "%d", &right) != EOF)
-        {
-            print();
-        }
-        return;
     }
-    else
-    {
-        fprintf(file3, "%d ", left);
-        if (fscanf(file, "%d", &left) != EOF)
-        {
-            print();
-        }
-        return;
-    }
+    return;
 }
