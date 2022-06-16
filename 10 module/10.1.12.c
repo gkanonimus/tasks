@@ -15,14 +15,13 @@ struct listnode *insert(struct listnode *L, int x)
     q = malloc(sizeof(struct listnode));
     q->elem = x;
     q->next = L;
-    int temp = L->elem;
-    while (L->next->elem != temp)
+    struct listnode *add = L;
+    while (L->next != add)
     {
         L = L->next;
     }
     L->next = q;
     return q;
-    
 }
 
 int main()
