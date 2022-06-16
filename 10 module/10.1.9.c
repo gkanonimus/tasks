@@ -34,22 +34,23 @@ struct listnode *filter(struct listnode *L, struct listnode *R)
         return L;
     }
     
-    struct listnode *ret, *ret2;
-    ret = malloc(sizeof(struct listnode));
-    ret2 = ret;
+    bool check = true;
+    struct listnode *ret;
     
     while (L != NULL)
     {
-        if (!inside(L->elem, R))
+        if (inside(L->next->elem, R))
         {
-            ret->elem = L->elem;
-            ret->next = malloc(sizeof(struct listnode));
-            ret       = ret->next;
+            L->next = L->next->next;
+        }
+        else if (check == true)
+        {
+            check = false;
+            ret = L;
         }
         L = L->next;
     }
-    ret = NULL;
-    return ret2;
+    return ret;
 }
 
 int main()
@@ -64,7 +65,6 @@ int main()
     p->elem = 3;
     p->next = malloc(sizeof(struct listnode));
     p = p->next;
-    
     
     p->elem = 4;
     p->next = malloc(sizeof(struct listnode));
