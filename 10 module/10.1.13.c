@@ -20,40 +20,31 @@ struct listnode *delete(struct listnode *L, int x)
     {
         if (L->elem == x)
         {
-            L = L->next;
-            if (L == NULL)
+            if (L->prev == NULL)
             {
-                return NULL;
+                L = L->next;
+                L->prev = NULL;
             }
-            L->prev = NULL;
+            else if (L->next == NULL)
+            {
+                L = L->prev;
+                L->next = NULL;
+                while (L->prev != NULL)
+                {
+                    L = L->prev;
+                }
+                return L;
+            }
+            else
+            {
+                struct listnode *temp = L->next;
+                temp->prev = L->prev;
+                L = L->prev;
+                L->next = temp;
+            }
         }
-        else break;
+        L = L->next;
     }
-    
-    while (L->next != NULL)
-    {
-        if (L->elem == x)
-        {
-            struct listnode *q = L->prev;
-            L = L->prev;
-            L->next = L->next->next;
-            L = L->next;
-            L->prev = q;
-        }
-        else L = L->next;
-    }
-    if (L->elem == x)
-    {
-        L = L->prev;
-        L->next = NULL;
-    }
-    
-    while (L->prev != NULL)
-    {
-        L = L->prev;
-    }
-    
-    return L;
 }
 
 int main()
