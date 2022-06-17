@@ -81,24 +81,18 @@ int main()
 {
     struct stack *st = NULL;
     struct stack *queue = NULL;
-    char string[100];
     char ch;
     for (int i = 0; (ch = getchar()) != EOF; i++)
     {
-        string[i] = ch;
-        if (ch == '.') break;
-    }
-    for (int i = 0; string[i] != '\0'; i++)
-    {
-        if (string[i] >= '0' && string[i] <= '9')
+        if (ch >= '0' && ch <= '9')
         {
-            enqueue(&queue, string[i]);
+            enqueue(&queue, ch);
         }
-        if (string[i] == '+' || string[i] == '-' || string[i] == '(')
+        if (ch == '+' || ch == '-' || ch == '(')
         {
-            push(&st, string[i]);
+            push(&st, ch);
         }
-        if (string[i] == ')')
+        if (ch == ')')
         {
             char temp = pop(&st);
             while (temp != '(')
@@ -107,7 +101,7 @@ int main()
                 temp = pop(&st);
             }
         }
-        if (string[i] == '.')
+        if (ch == '.')
         {
             while (is_empty(st) != -1)
             {
