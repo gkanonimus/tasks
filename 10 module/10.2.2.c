@@ -12,18 +12,24 @@ struct queue
 
 void clear(struct queue *st)
 {
-    free(st);
+    while (st != NULL)
+    {
+        struct queue *temp = st;
+        st = st->next;
+        free(temp);
+    }
+    printf("Queue has been cleared\n");
     return;
 }
 
-int is_empty(struct queue *st)
+bool is_empty(struct queue *st)
 {
     if (st == NULL)
     {
         printf("Stack underflow\n");
-        return -1;
+        return true;
     }
-    return st->elem;
+    return false;
 }
 
 void enqueue(struct queue **st, int number)
@@ -71,7 +77,7 @@ int main()
     {
         enqueue(&L, i);
     }
-    while (is_empty(L) != -1)
+    while (!is_empty(L))
     {
         printf("%d popped out\n", dequeue(&L));
     }

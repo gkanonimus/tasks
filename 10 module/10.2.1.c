@@ -10,14 +10,40 @@ struct stack
     struct stack *next;
 };
 
-int is_empty(struct stack *st)
+void clear(struct stack *st)
+{
+    while (st != NULL)
+    {
+        struct stack *temp = st;
+        st = st->next;
+        free(temp);
+    }
+    printf("Stack has been cleared\n");
+    return;
+}
+
+bool is_empty(struct stack *st)
 {
     if (st == NULL)
     {
         printf("Stack underflow\n");
-        return -1;
+        return true;
     }
-    return st->elem;
+    return false;
+}
+
+void push(struct stack **st, int number)
+{
+    struct stack *new = malloc(sizeof(struct stack));
+    new->elem = number;
+    new->next = NULL;
+    if (st == NULL)
+    {
+        new = *st;
+    }
+    new->next = *st;
+    *st = new;
+    return;
 }
 
 int pop(struct stack **st)
@@ -35,21 +61,6 @@ int pop(struct stack **st)
     return number;
 }
 
-void push(struct stack **st, int number)
-{
-    struct stack *new = malloc(sizeof(struct stack));
-    new->elem = number;
-    new->next = *st;
-    *st = new;
-    return;
-}
-
-void clear(struct stack *st)
-{
-    free(st);
-    return;
-}
-
 int main()
 {
     struct stack *L = NULL;
@@ -57,7 +68,8 @@ int main()
     {
         push(&L, i);
     }
-    while (is_empty(L) != -1)
+    clear(L);
+    while (!is_empty(L))
     {
         printf("%d popped out\n", pop(&L));
     }
