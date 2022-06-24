@@ -12,17 +12,23 @@ struct stack
 
 void clear(struct stack *st)
 {
-    free(st);
+    while (st != NULL)
+    {
+        struct stack *temp = st;
+        st = st->next;
+        free(temp);
+    }
+    printf("Stack has been cleared\n");
     return;
 }
 
-int is_empty(struct stack *st)
+bool is_empty(struct stack *st)
 {
     if (st == NULL)
     {
-        return -1;
+        return true;
     }
-    return st->elem;
+    return false;
 }
 
 void push(struct stack **st, char ch)
@@ -82,13 +88,24 @@ int main()
     struct stack *st = NULL;
     struct stack *queue = NULL;
     char ch;
-    for (int i = 0; (ch = getchar()) != EOF; i++)
+    bool check = false;
+    while ((ch = getchar()) != EOF)
     {
         if (ch >= '0' && ch <= '9')
         {
+            if (check) 
+            {
+                enqueue(&queue, ' ');
+                check = false;
+            }
             enqueue(&queue, ch);
         }
-        if (ch == '+' || ch == '-' || ch == '(')
+        if (ch == '+' || ch == '-')
+        {
+            check = true;
+            push(&st, ch);
+        }
+        if (ch == '(')
         {
             push(&st, ch);
         }
@@ -103,16 +120,18 @@ int main()
         }
         if (ch == '.')
         {
-            while (is_empty(st) != -1)
+            while (!is_empty(st))
             {
                 enqueue(&queue, pop(&st));
             }
             break;
         }
     }
-    while (is_empty(queue) != -1)
+    while (!is_empty(queue))
     {
-        printf("%c ", pop(&queue));
+        ch = pop(&queue);
+        if (ch > '9' || ch < '0' && ch != ' ') printf(" ");
+        printf("%c", ch);
     }
     printf("\n");
 }
