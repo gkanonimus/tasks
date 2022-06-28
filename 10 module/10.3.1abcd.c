@@ -23,11 +23,11 @@ struct treenode *newNode(int data)
     return node;
 }
 
-int print_tree(struct treenode *T)
+int sum(struct treenode *T)
 {
     if (T != NULL)
     {
-        return T->data + print_tree (T->left) + print_tree (T->right);
+        return T->data + sum(T->left) + sum(T->right);
     }
 }
 
@@ -55,7 +55,7 @@ int height(struct treenode *T)
    }
 }
 
-int not_leaves(struct treenode *T)
+void not_leaves(struct treenode *T)
 {
     if (T != NULL)
     {
@@ -80,7 +80,7 @@ int main()
     root->right->right->right = newNode(8);
     root->right->right->right->right = newNode(9);
     
-    printf("Sum is: %d\n", print_tree(root));
+    printf("Sum is: %d\n", sum(root));
     printf("Counter is: %d\n", check(root, 4));
     printf("Height of the treenode is %d\n", height(root));
     printf("Vertex values that are not leaves:\n");
